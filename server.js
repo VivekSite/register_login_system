@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import colors from 'colors';
-import morgan from "morgan";
 import cors from 'cors';
 import mongoDB from './config/db.js';
 import authRoutes from "./routes/authRoutes.js";
@@ -20,7 +19,6 @@ const server = express();
 //––––––––––––––––––––––– Middleware –––––––––––––––––––––
 server.use(cors());
 server.use(express.json())
-server.use(morgan('dev'))
 server.use(express.static(path.join(__dirname, "./client/build")));
 
 //––––––––––––––––––––––– Auth Routes –––––––––––––––––––––
