@@ -17,7 +17,9 @@ dotenv.config();
 const server = express();
 
 //––––––––––––––––––––––– Middleware –––––––––––––––––––––
-server.use(cors());
+server.use(cors({
+  origin: 'https://wide-eyed-erin-angler.cyclic.cloud'
+}));
 server.use(express.json())
 server.use(express.static(path.join(__dirname, "./client/build")));
 
