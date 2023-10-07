@@ -6,16 +6,13 @@ import cors from 'cors';
 import mongoDB from './config/db.js';
 import authRoutes from "./routes/authRoutes.js";
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
 //––––––––––––––––––––––– dotenv config ––––––––––––––––––
 dotenv.config();
-
-//––––––––––––––––––––––– Connect to database ––––––––––––
-mongoDB();
 
 //––––––––––––––––––––––– Rest obj –––––––––––––––––––––––
 const server = express();
@@ -43,6 +40,10 @@ server.use("*", (req, res) => {
 //––––––––––––––––––––––– Server Listening –––––––––––––––––
 const PORT = process.env.PORT || 8080;
 
-server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`.bgGreen.white);
+
+//––––––––––––––––––––––– Connect to database ––––––––––––
+mongoDB().then(()=>{
+  server.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}...`.bgGreen.white);
+  })
 })
