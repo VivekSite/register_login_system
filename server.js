@@ -18,7 +18,10 @@ const server = express();
 
 //––––––––––––––––––––––– Middleware –––––––––––––––––––––
 server.use(cors({
-  origin: 'https://wide-eyed-erin-angler.cyclic.cloud'
+  allowedHeaders: 'Content-Type, Authorization',
+  methods: 'GET, POST, PUT, DELETE',
+  origin: 'https://dark-gray-kangaroo-gear.cyclic.app/',
+  credentials: true
 }));
 server.use(express.json())
 server.use(express.static(path.join(__dirname, "./client/build")));
